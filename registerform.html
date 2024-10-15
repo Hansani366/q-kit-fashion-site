@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #212166;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: #f44336;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: #212166;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #333399;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="nic">NIC:</label>
+                <input type="text" id="nic" name="nic" required>
+                <div class="error" id="nicError"></div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required>
+                <div class="error" id="phoneError"></div>
+            </div>
+            <div class="form-group">
+                <label for="province">Province:</label>
+                <select id="province" name="province" required>
+                    <option value="">Please choose your province</option>
+                    <option value="Province 1">southern</option>
+                    <option value="Province 2">uwa</option>
+                    <option value="Province 3">eastern</option>
+                    <option value="Province 4">north</option>
+                    <option value="Province 5">western</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="">Please choose your district</option>
+                    <option value="District 1">Matara</option>
+                    <option value="District 2">Galle</option>
+                    <option value="District 3">Hambanthota</option>
+                    <option value="District 4">Kandy</option>
+                    <option value="District 5">Colombo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <select id="city" name="city" required>
+                    <option value="">Please choose your city</option>
+                    <option value="City 1">Dickwella</option>
+                    <option value="City 2">Tangalle</option>
+                    <option value="City 3">Beliaththa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="For example: House# 123, Street# 123, ABC Road" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            if (validateForm()) {
+                window.location.href = 'index.html'; 
+            }
+        });
+
+        function validateForm() {
+            let valid = true;
+
+            
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                valid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            
+            const nic = document.getElementById('nic').value;
+            const nicError = document.getElementById('nicError');
+            const nicPattern = /^(\d{9}[Vv]|\d{12})$/;
+            if (!nicPattern.test(nic)) {
+                nicError.textContent = 'Please enter a valid NIC number.';
+                valid = false;
+            } else {
+                nicError.textContent = '';
+            }
+
+            
+            const phone = document.getElementById('phone').value;
+            const phoneError = document.getElementById('phoneError');
+            const phonePattern = /^\+94[0-9]{9}$/;
+            if (!phonePattern.test(phone)) {
+                phoneError.textContent = 'Please enter a valid phone number (e.g., +94123456789).';
+                valid = false;
+            } else {
+                phoneError.textContent = '';
+            }
+
+            return valid; 
+        }
+    </script>
+</body>
+</html>

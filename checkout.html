@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #7992a0;
+            color: rgb(245, 242, 242);
+            text-align: center;
+            padding: 1em 0;
+            margin-bottom: 20px;
+        }
+
+       
+        nav {
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 2px solid #007bff;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav a {
+    display: block;
+    color: #343a40;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family:bold;
+}
+
+nav a:hover, nav a.active {
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    padding: 0;
+    list-style: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    width: 200px;
+}
+
+nav ul li ul a {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #343a40;
+}
+
+nav ul li ul a:hover {
+    background-color: #f1f1f1;
+}
+
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .navigate-button {
+            display: inline-block;
+            background-color: #043258;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .navigate-button:hover {
+            background-color: #333399;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
+
+    <section>
+        <h2>Checkout</h2>
+        <form id="checkoutForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <div class="error" id="emailError"></div>
+            <label for="address">Shipping Address:</label>
+            <input type="text" id="address" name="address" required><br>
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment">
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="cash-on-delivery">cash on delivery </option>
+                
+            </select><br>
+            <a href="#" class="navigate-button" onclick="validateForm()">Register to order</a>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 E-Commerce Platform.</p>
+    </footer>
+
+    <script>
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            let isValid = true;
+
+        
+            if (!emailPattern.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            
+            if (isValid) {
+                window.location.href = "registerform.html";
+            }
+
+            return isValid;
+        }
+    </script>
+
+</body>
+</html>
